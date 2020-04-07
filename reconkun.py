@@ -46,7 +46,7 @@ def second_menu(): #ip menu
     elif choice == "2":
       print("Going back!")
       main() 
-    elif choice == "2":
+    elif choice == "3":
       print("Exiting program. Byebye!")
       sys.exit(1) #exit program     
     else:
