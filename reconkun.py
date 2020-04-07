@@ -27,7 +27,6 @@ def main():
         sys.exit(1) #exit program; same error
 
 def second_menu(): #ip menu
-  print("This is the IP menu")
   print("- - - - - - - - - - - - - - - - - - - - - -")
   choice ='0'
   while choice =='0':
@@ -53,7 +52,6 @@ def second_menu(): #ip menu
         print("I don't understand your choice.")
 
 def third_menu(): #subnet menu
-  print("This is the Subnet menu")
   print("- - - - - - - - - - - - - - - - - - - - - -")
   choice ='0'
   while choice =='0':
