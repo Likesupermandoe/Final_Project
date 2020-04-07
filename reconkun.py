@@ -4,7 +4,7 @@ import subprocess #interacting with OS
 def main():
   choice ='0'
   while choice =='0':
-    print("Do you have a target?")
+    print("Who is your target?")
     print("1: Yes")
     print("2: No")
     print("Exit")
