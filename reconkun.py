@@ -5,11 +5,11 @@ def main():
   choice ='0'
   while choice =='0':
     print("Who is your target?")
-    print("1: IP")
-    print("2: Subnet")
-    print("Exit")
+    print("1 - IP")
+    print("2 - Subnet")
+    print("3 - Exit")
 
-    choice = input ("Please make a choice: ")
+    choice = input ("Please make a choice (Use numbers): ")
 
     if choice == "1":
         print("⋆ -- Taking you to IP menu -- ⋆")
@@ -17,7 +17,7 @@ def main():
     elif choice == "2":
         print("⋆ -- Taking you to Subnet menu -- ⋆")
         third_menu()
-    elif choice == "exit":
+    elif choice == "3":
         print("Exiting program")
         sys.exit(1) #exit program
         #repl process died unexpectedly: exit status 1 *ask someone!
