@@ -12,11 +12,12 @@ def main():
     choice = input ("Please make a choice (Use numbers): ")
 
     if choice == "1":
-        print("⋆ -- Taking you to IP menu -- ⋆")
-        second_menu()
+        print("Input IP here") #input ip here
+        #usrchoice = input()
+        usrchoice = subprocess.call(['nmap'] +  [input()])    
     elif choice == "2":
-        print("⋆ -- Taking you to Subnet menu -- ⋆")
-        third_menu()
+        print("Input Subnet here:") #input subnet here
+        subprocess.call(['nmap', '-sn'] +  [input()])    
     elif choice == "3":
         print("Exiting program")
         sys.exit(1) #exit program
