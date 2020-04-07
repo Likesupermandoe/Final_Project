@@ -5,10 +5,9 @@ def main():
   choice ='0'
   while choice =='0':
     print("Who is your target?")
-    print("1: Yes")
-    print("2: No")
+    print("1: IP")
+    print("2: Subnet")
     print("Exit")
-    print("Choose 5 to go to another menu")
 
     choice = input ("Please make a choice: ")
 
