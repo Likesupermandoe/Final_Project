@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import sys
 import subprocess #interacting with OS
-
+from colorama import Fore, Back, Style 
 
 
 def main():
-  print("\n\n\n##### Reconkun is an interactive script that aims to guide beginner red-teamers through the active recon process by explaining#####\n##### the thought process as well useful tools to use to start gathering information. This is for ethical hackers who#####\n##### want to learn. Ethical hacking is performed by a company to help identify potential threats on a machine or network.#####\n\n ")
+  print(Fore.GREEN + "\n\n\n##### Reconkun is an interactive script that aims to guide beginner red-teamers through the active recon process by explaining \n##### the thought process as well useful tools to use to start gathering information. This is for ethical hackers who \n##### want to learn. Ethical hacking is performed by a company to help identify potential threats on a machine or network.\n\n ")
+  print(Style.RESET_ALL)
   print(r"""\
 
                                    ._ o o
@@ -23,7 +24,8 @@ def main():
 
   choice ='0'
   while choice =='0':
-    print("- - - Who is your target? - - -")
+    print(Fore.BLUE +"- - - Who is your target? - - -")
+    print(Style.RESET_ALL)
     print("1 - Go to Scan Menu - I already have an IP")
     print("2 - Subnet")
     print("3 - My target?! Subnet!?  What's that?")
@@ -79,24 +81,26 @@ def nmap_menu(): #NMAP_menu
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
   choice ='0'
   while choice =='0':
-    print("1: nmap -A")
-    print("2: nmap -O") # need to input subnet here
-    print("3: nmap -sV")
-    print("4: Exit")
+    print("1: What is NMAP and why should I love it?")
+    print("2: nmap -A")
+    print("3: nmap -O") # need to input subnet here
+    print("4: nmap -sV")
+    print("5: Exit")
 
     choice = input ("Please make a choice: ")
-
     if choice == "1":
+        nmap_expl() #Takes to NMAP explanation menu
+    elif choice == "2":
         print("Aggressive Scan") #Explaination
         subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
-    elif choice == "2":
+    elif choice == "3":
         print("Operating System Scan")
         subprocess.call(['nmap', '-O'] + [input()])
-    elif choice == "2":
+    elif choice == "4":
         print("Service Version Scan")
         subprocess.call(['nmap', '-sV'] + [input()])
-    elif choice == "4":
+    elif choice == "5":
         print(" Exiting")
         sys.exit(1) #exit program 
     else:
@@ -125,4 +129,10 @@ def target_info(): #Target Information & How to find it!
         else:
             print ("I don't understand your choice.")
 
+def nmap_expl(): #Explanation on Nmap!
+    print("- - - - - - - - - - - - - - - - - - - - - -\n")
+    print("What is Nmap? \n\n")
+    print("Nmap is an open source port scanning tool. It can be used to find different machines on a network,\nopen ports on a machine and the services they run, the operating system they're running on.")
+    print("\nHowever, it doesn't have to be just that. You can customize your Nmap scan to do different things. It can scan for vulnerabilities as well.")
+    print("\nA basic scan on a machine looking for all ports would look something like this: nmap -p- 192.168.2.0 \nThe '-p-' means to scan for all open ports on the machines 192.168.2.0 ")
 main()
