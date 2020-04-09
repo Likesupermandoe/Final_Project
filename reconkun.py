@@ -99,7 +99,8 @@ def nmap_menu(): #NMAP_menu
                  In a real-world setting where data traffic is closely monitored, this scan will draw unwanted attention to your reconnaissance. 
                  It is important to keep in mind that we want to remain undetected as we gather information to eventually compromise a target machine.''') 
         print("Enter Target IP")
-        subprocess.call(['nmap', '-A'] + [input()])
+        subprocess.call(['nmap', '-A', input(), '-oG', 'NMAP_A_Scan.txt'])        
+        #subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
     elif choice == "3":
         print("Operating System Scan")
@@ -109,7 +110,8 @@ def nmap_menu(): #NMAP_menu
                  and compares those responses to its database of OS fingerprints to identify the most probable Operating System that target is running on. 
                  For indepth info visit: https://nmap.org/book/man-os-detection.html''')
         print("Enter Target IP")
-        subprocess.call(['nmap', '-O'] + [input()])
+        subprocess.call(['nmap', '-O', input(), '-oG', 'NMAP_O_Scan.txt'])         
+        #subprocess.call(['nmap', '-O'] + [input()])
     elif choice == "4":
         print("Service Version Scan")
         print('''This nmap flag calls for ‘Version Detection’ 
@@ -119,7 +121,8 @@ def nmap_menu(): #NMAP_menu
                  such as protocol name, application name, service version, device type, etc.
                  For indepth info visit: https://nmap.org/book/man-version-detection.html''')
         print("Enter Target IP")
-        subprocess.call(['nmap', '-sV'] + [input()])
+        subprocess.call(['nmap', '-sV', input(), '-oG', 'NMAP_sV_Scan.txt'])  
+        #subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
         print(" Exiting")
         sys.exit(1) #exit program 
