@@ -92,19 +92,40 @@ def nmap_menu(): #NMAP_menu
         nmap_expl() #Takes to NMAP explanation menu
     elif choice == "2":
         print("Aggressive Scan") #Explaination
+        print('''The syntax on the command line is: nmap -A <target>. 
+                 This special scan enables OS detection, Service Version detection, and 
+                 default nmap script scans among many other probing functions all in one setting.''')
+        print('''Cons: Sending so many probes to your target machine creates a lot of traffic. 
+                 In a real-world setting where data traffic is closely monitored, this scan will draw unwanted attention to your reconnaissance. 
+                 It is important to keep in mind that we want to remain undetected as we gather information to eventually compromise a target machine.''') 
+        print("Enter Target IP")
         subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
     elif choice == "3":
         print("Operating System Scan")
+        print('''This nmap flag calls for ‘Operating System discovery’ 
+                 The syntax for this command line is: nmap -O <target>. 
+                 Nmap sends a series of tcp/ip packets to the targetted machine, examines all the responses 
+                 and compares those responses to its database of OS fingerprints to identify the most probable Operating System that target is running on. 
+                 For indepth info visit: https://nmap.org/book/man-os-detection.html''')
+        print("Enter Target IP")
         subprocess.call(['nmap', '-O'] + [input()])
     elif choice == "4":
         print("Service Version Scan")
+        print('''This nmap flag calls for ‘Version Detection’ 
+                 The syntax for this on the command line is: nmap -sV <target>. 
+                 Nmap will discover ports and use probes from its data base to query the ports and examine their responses 
+                 and returns to you the services that are running on those ports as well other pertinent info about those services 
+                 such as protocol name, application name, service version, device type, etc.
+                 For indepth info visit: https://nmap.org/book/man-version-detection.html''')
+        print("Enter Target IP")
         subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
         print(" Exiting")
         sys.exit(1) #exit program 
     else:
         print("I don't understand your choice.")
+
 
 def target_info(): #Target Information & How to find it!
     print("- - - - - - - - - - - - - - - - - - - - - -\n")
