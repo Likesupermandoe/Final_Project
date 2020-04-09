@@ -100,7 +100,7 @@ def nmap_menu(): #NMAP_menu
                  It is important to keep in mind that we want to remain undetected as we gather information to eventually compromise a target machine.''') 
         print("Enter Target IP")
         subprocess.call(['nmap', '-A', input(), '-oG', 'NMAP_A_Scan.txt'])        
-        scan() # takes us back to scan menu
+        scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
     elif choice == "3":
@@ -112,7 +112,7 @@ def nmap_menu(): #NMAP_menu
                  For indepth info visit: https://nmap.org/book/man-os-detection.html''')
         print("Enter Target IP")
         subprocess.call(['nmap', '-O', input(), '-oG', 'NMAP_O_Scan.txt'])         
-        scan() # takes us back to scan menu
+        scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-O'] + [input()])
     elif choice == "4":
         print("Service Version Scan")
@@ -124,7 +124,7 @@ def nmap_menu(): #NMAP_menu
                  For indepth info visit: https://nmap.org/book/man-version-detection.html''')
         print("Enter Target IP")
         subprocess.call(['nmap', '-sV', input(), '-oG', 'NMAP_sV_Scan.txt'])  
-        scan() # takes us back to scan menu
+        scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
         print(" Exiting")
