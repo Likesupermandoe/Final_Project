@@ -59,7 +59,7 @@ def scan_menu(): #scan_MENU
   while choice =='0':
     print(" :: What scans do you want to do? ::")
     print("1: NMAP") # need to input IP here
-    print("2: Nikto")
+    print("2: Nikto - Coming Soon!") # add Nikto Menu
     print("3: Exit")
 
     choice = input ("Please make a choice: ")
