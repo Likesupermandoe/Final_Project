@@ -41,7 +41,18 @@ def main():
         scan_menu()
     elif choice == "2":
         print("Input Subnet here:") #input subnet here
-        subprocess.call(['nmap', '-sn'] +  [input()]) # need to parse output here
+        #subprocess.call(['nmap', '-sn'] +  [input()]) # need to parse output here
+        nm = nmap.PortScanner()
+        host = input() 
+        nm.scan(host, '1-1024', '-sN')
+        nm.command_line()
+        nm.scaninfo()
+
+        for host in nm.all_hosts():
+            print('----------------------------------------------------')
+            print('Host : %s (%s)' % (host, nm[host].hostname()))
+            print('State : %s' % nm[host].state())
+            print('----------------------------------------------------')
         scan_menu()
     elif choice == "3":
         print("Target info here")
