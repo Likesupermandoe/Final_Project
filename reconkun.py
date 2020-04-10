@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys
+import re
 import nmap
 import subprocess #interacting with OS
 from colorama import Fore, Back, Style 
@@ -35,12 +35,12 @@ def main():
     choice = input ("Please make a choice (Use numbers): ")
 
     if choice == "1":
-        #print(". . . . .") #input ip here
+        #print(". . . . .") #input ip here (import regex to sanitize IP address input)
         #usrchoice = input()
         #usrchoice = subprocess.call(['nmap'] +  [input()])
         scan_menu()
     elif choice == "2":
-        print("Input Subnet here:") #input subnet here
+        print("Input Subnet here:") #input subnet here #NEED: sanitize IP subnet input
         #subprocess.call(['nmap', '-sn'] +  [input()]) # need to parse output here
         nm = nmap.PortScanner()
         host = input() 
