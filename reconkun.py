@@ -8,8 +8,7 @@ import nmap
 def main():
   print(Fore.GREEN + "\n\n\n##### Reconkun is an interactive script that aims to guide beginner red-teamers through the active recon process by explaining \n##### the thought process as well useful tools to use to start gathering information. This is for ethical hackers who \n##### want to learn. Ethical hacking is performed by a company to help identify potential threats on a machine or network.\n\n ")
   print(Style.RESET_ALL)
-  print(r"""\
-
+  print(Fore.YELLOW + r"""                         W E L C O M E  T O   R E C O N - K U N
                                    ._ o o
                                    \_`-)|_
                                 ,""       \ 
@@ -18,9 +17,10 @@ def main():
                           ,"       /     `--._;)
                         ,"     ## /
                       ,"   ##    /
-
-
                 """)
+
+  print(Style.RESET_ALL)
+
 
 
   choice ='0'
