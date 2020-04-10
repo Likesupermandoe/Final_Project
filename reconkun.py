@@ -41,7 +41,7 @@ def main():
         scan_menu()
     elif choice == "2":
         print("Input Subnet here:") #input subnet here
-        subprocess.call(['nmap', '-sn'] +  [input()])
+        subprocess.call(['nmap', '-sn'] +  [input()]) # need to parse output here
         scan_menu()
     elif choice == "3":
         print("Target info here")
@@ -61,7 +61,8 @@ def scan_menu(): #scan_MENU
     print(" :: What scans do you want to do? ::")
     print("1: NMAP") # need to input IP here
     print("2: Nikto")
-    print("3: Exit")
+    print("3: Main Menu")
+    print("4: Exit")
 
     choice = input ("Please make a choice: ")
     #usrchoice = raw_input(" ")
@@ -70,9 +71,12 @@ def scan_menu(): #scan_MENU
         print("NMAP scan choices") #input ip here
         nmap_menu()
     elif choice == "2":
-      print("Going back!")
-      main() 
-    elif choice == "3":
+      subprocess.call(['nikto', '-h'], [input()])
+      scan_menu()
+    elic choice == "3":
+      print("Going back to Main Menu")
+      main()
+    elif choice == "4":
       print("Exiting program. Byebye!")
       sys.exit(1) #exit program     
     else:
