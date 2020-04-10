@@ -189,7 +189,7 @@ def nmap_menu(): #NMAP_menu
                 print('OsMatch.accuracy : {0}'.format(osmatch['accuracy']))
                 print('OsMatch.line : {0}'.format(osmatch['line']))
                 print('')
-           if 'osclass' in osmatch:
+          if 'osclass' in osmatch:
             for osclass in osmatch['osclass']:
                 print('OsClass.type : {0}'.format(osclass['type']))
                 print('OsClass.vendor : {0}'.format(osclass['vendor']))
