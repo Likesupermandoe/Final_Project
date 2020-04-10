@@ -26,7 +26,7 @@ def main():
   while choice =='0':
     print(Fore.BLUE +"- - - Who is your target? - - -")
     print(Style.RESET_ALL)
-    print("1 - Go to Scan Menu - I already have an IP")
+    print("1 - I have a target IP - take me to the Scan Menu")
     print("2 - Subnet")
     print("3 - My target?! Subnet!?  What's that?")
     print("4 - Exit")
@@ -51,7 +51,7 @@ def main():
         #repl process died unexpectedly: exit status 1 *ask someone!
     else:
         print("I don't understand your choice.")
-        sys.exit(1) #exit program; same error
+        main() #invalid choice... go back to main()
 
 def scan_menu(): #scan_MENU
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
@@ -101,7 +101,7 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         print(Fore.RED + "Enter Target IP")
         print(Style.RESET_ALL)
-        subprocess.call(['nmap', '-A', input(), '-oG', 'NMAP_A_Scan.txt'])        
+        subprocess.call(['nmap', '-A', input(), '-oX', 'NMAP_A_Scan.txt'])        
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
@@ -115,7 +115,7 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         print(Fore.RED +"Enter Target IP")
         print(Style.RESET_ALL)
-        subprocess.call(['nmap', '-O', input(), '-oG', 'NMAP_O_Scan.txt'])         
+        subprocess.call(['nmap', '-O', input(), '-oX', 'NMAP_O_Scan.txt'])         
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-O'] + [input()])
     elif choice == "4":
@@ -129,7 +129,7 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         print(Fore.RED + "Enter Target IP")
         print(Style.RESET_ALL)
-        subprocess.call(['nmap', '-sV', input(), '-oG', 'NMAP_sV_Scan.txt'])  
+        subprocess.call(['nmap', '-sV', input(), '-oX', 'NMAP_sV_Scan.txt'])  
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
