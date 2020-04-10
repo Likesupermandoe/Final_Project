@@ -88,7 +88,7 @@ def scan_menu(): #scan_MENU
     elif choice == "2":
       subprocess.call(['nikto', '-h'], [input()])
       scan_menu()
-    elic choice == "3":
+    elif choice == "3":
       print("Going back to Main Menu")
       main()
     elif choice == "4":
