@@ -3,6 +3,7 @@ import re
 import nmap
 import subprocess #interacting with OS
 from colorama import Fore, Back, Style 
+import sys
 
 
 def main():
