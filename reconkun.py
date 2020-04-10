@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 import sys
+import nmap
 import subprocess #interacting with OS
 from colorama import Fore, Back, Style 
-import nmap
 
 
 def main():
   print(Fore.GREEN + "\n\n\n##### Reconkun is an interactive script that aims to guide beginner red-teamers through the active recon process by explaining \n##### the thought process as well useful tools to use to start gathering information. This is for ethical hackers who \n##### want to learn. Ethical hacking is performed by a company to help identify potential threats on a machine or network.\n\n ")
   print(Style.RESET_ALL)
-  print(Fore.YELLOW + r"""                         W E L C O M E  T O   R E C O N - K U N
+  print(r"""\
+
                                    ._ o o
                                    \_`-)|_
                                 ,""       \ 
@@ -17,10 +18,9 @@ def main():
                           ,"       /     `--._;)
                         ,"     ## /
                       ,"   ##    /
+
+
                 """)
-
-  print(Style.RESET_ALL)
-
 
 
   choice ='0'
@@ -102,9 +102,8 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         print(Fore.RED + "Enter Target IP")
         print(Style.RESET_ALL)
-        #subprocess.call(['nmap', '-A', input(), '-oX', 'NMAP_A_Scan.txt']) 
         nm = nmap.PortScanner()
-        host = input()
+        host = input() 
         nm.scan(host, '1-1024', '-A')
         nm.command_line()
         nm.scaninfo()
@@ -118,7 +117,7 @@ def nmap_menu(): #NMAP_menu
             print('----------')
             print('Protocol : %s' % proto)
 
-            lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
+        lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
 #            lport.sort()
         for port in lport:
             print('----------------------------------------------------')
@@ -142,6 +141,8 @@ def nmap_menu(): #NMAP_menu
                 print('OsClass.osgen : {0}'.format(osclass['osgen']))
                 print('OsClass.accuracy : {0}'.format(osclass['accuracy']))
                 print('')
+
+        #subprocess.call(['nmap', '-A', input(), '-oX', 'NMAP_A_Scan.txt'])        
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
@@ -155,7 +156,25 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         print(Fore.RED +"Enter Target IP")
         print(Style.RESET_ALL)
-        subprocess.call(['nmap', '-O', input(), '-oX', 'NMAP_O_Scan.txt'])         
+#        subprocess.call(['nmap', '-O', input(), '-oX', 'NMAP_O_Scan.txt'])  
+        nm = nmap.PortScanner()
+        host = input()
+        nm.scan(host, arguments="-O")
+        if 'osmatch' in nm[host]:
+            for osmatch in nm[host]['osmatch']:
+                print('OsMatch.name : {0}'.format(osmatch['name']))
+                print('OsMatch.accuracy : {0}'.format(osmatch['accuracy']))
+                print('OsMatch.line : {0}'.format(osmatch['line']))
+                print('')
+        if 'osclass' in osmatch:
+            for osclass in osmatch['osclass']:
+                print('OsClass.type : {0}'.format(osclass['type']))
+                print('OsClass.vendor : {0}'.format(osclass['vendor']))
+                print('OsClass.osfamily : {0}'.format(osclass['osfamily']))
+                print('OsClass.osgen : {0}'.format(osclass['osgen']))
+                print('OsClass.accuracy : {0}'.format(osclass['accuracy']))
+                print('')
+       
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-O'] + [input()])
     elif choice == "4":
@@ -169,7 +188,31 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         print(Fore.RED + "Enter Target IP")
         print(Style.RESET_ALL)
-        subprocess.call(['nmap', '-sV', input(), '-oX', 'NMAP_sV_Scan.txt'])  
+        nm = nmap.PortScanner()
+        host = input()
+        nm.scan(host, '1-1024', '-sV')
+        nm.command_line()
+        nm.scaninfo()
+
+        for host in nm.all_hosts():
+            print('----------------------------------------------------')
+            print('Host : %s (%s)' % (host, nm[host].hostname()))
+            print('State : %s' % nm[host].state())
+            print('----------------------------------------------------')
+        for proto in nm[host].all_protocols():
+            print('----------')
+            print('Protocol : %s' % proto)
+
+            lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
+#            lport.sort()
+        for port in lport:
+            print('----------------------------------------------------')
+            print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
+            print('port : %s\tService : %s' % (port, nm[host][proto][port]['name']))
+            print('port : %s\tVersion : %s' % (port, nm[host][proto][port]['version']))
+            print('port : %s\tProduct : %s' % (port, nm[host][proto][port]['product']))
+
+#        subprocess.call(['nmap', '-sV', input(), '-oX', 'NMAP_sV_Scan.txt'])  
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
