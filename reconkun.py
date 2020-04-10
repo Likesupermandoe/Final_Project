@@ -83,15 +83,15 @@ def nmap_menu(): #NMAP_menu
   choice ='0'
   while choice =='0':
     print("1: nmap -sV")
-    print("2: nmap -A")
-    print("3: nmap -O") # need to input subnet here
+    print("2: nmap -O")
+    print("3: nmap -A")
     print("4: What is NMAP and why should I love it?")
     print("5: Exit")
 
     choice = input ("Please make a choice: ")
     if choice == "4":
         nmap_expl() #Takes to NMAP explanation menu
-    elif choice == "2":
+    elif choice == "3":
         print("Aggressive Scan") #Explaination
         print(Fore.BLUE + '''\t\t The syntax on the command line is: nmap -A <target>. 
                  This special scan enables OS detection, Service Version detection, and 
@@ -146,7 +146,7 @@ def nmap_menu(): #NMAP_menu
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-A'] + [input()])
         #subprocess.call(pingsweep.sh )
-    elif choice == "3":
+    elif choice == "2":
         print("Operating System Scan")
         print(Fore.BLUE +'''\t\t This nmap flag calls for ‘Operating System discovery’ 
                  The syntax for this command line is: nmap -O <target>. 
