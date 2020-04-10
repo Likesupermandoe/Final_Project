@@ -82,14 +82,14 @@ def nmap_menu(): #NMAP_menu
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
   choice ='0'
   while choice =='0':
-    print("1: What is NMAP and why should I love it?")
+    print("1: nmap -sV")
     print("2: nmap -A")
     print("3: nmap -O") # need to input subnet here
-    print("4: nmap -sV")
+    print("4: What is NMAP and why should I love it?")
     print("5: Exit")
 
     choice = input ("Please make a choice: ")
-    if choice == "1":
+    if choice == "4":
         nmap_expl() #Takes to NMAP explanation menu
     elif choice == "2":
         print("Aggressive Scan") #Explaination
@@ -177,7 +177,7 @@ def nmap_menu(): #NMAP_menu
        
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-O'] + [input()])
-    elif choice == "4":
+    elif choice == "1":
         print("Service Version Scan")
         print(Fore.BLUE + '''\t\t This nmap flag calls for ‘Version Detection’ 
                  The syntax for this on the command line is: nmap -sV <target>. 
