@@ -178,14 +178,17 @@ def nmap_menu(): #NMAP_menu
 #        subprocess.call(['nmap', '-O', input(), '-oX', 'NMAP_O_Scan.txt'])  
         nm = nmap.PortScanner()
         host = input()
-        nm.scan(host, arguments="-O")
-        if 'osmatch' in nm[host]:
+        ipv4_address = re.compile('^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
+        usr_input = ipv4_address.match(host)
+        if usr_input:
+          nm.scan(host, arguments="-O")
+          if 'osmatch' in nm[host]:
             for osmatch in nm[host]['osmatch']:
                 print('OsMatch.name : {0}'.format(osmatch['name']))
                 print('OsMatch.accuracy : {0}'.format(osmatch['accuracy']))
                 print('OsMatch.line : {0}'.format(osmatch['line']))
                 print('')
-        if 'osclass' in osmatch:
+           if 'osclass' in osmatch:
             for osclass in osmatch['osclass']:
                 print('OsClass.type : {0}'.format(osclass['type']))
                 print('OsClass.vendor : {0}'.format(osclass['vendor']))
@@ -193,7 +196,8 @@ def nmap_menu(): #NMAP_menu
                 print('OsClass.osgen : {0}'.format(osclass['osgen']))
                 print('OsClass.accuracy : {0}'.format(osclass['accuracy']))
                 print('')
-       
+        else: 
+          print("IP no bueno")
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-O'] + [input()])
     elif choice == "1":
