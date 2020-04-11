@@ -266,12 +266,18 @@ def nmap_menu(): #NMAP_menu
 
 
 def target_info(): #Target Information & How to find it!
-    print("- - - - - - - - - - - - - - - - - - - - - -\n")
-    print("What's a target?\n\n")
-    print("Your target is the machine or network you are performing active recon on.\nThis is where you are actively engaging the target machine or network\nto gather more information.\n\n")
-    print("- - - - - - - - - - - - - - - - - - - - - -\n")
-    print("\nA Subnet is a smaller network in which all the devices on THAT network share IP addresses with the same prefix. Like 192.168.2.0, 192.168.3.0, 192.168.4.0 are on the same subnet. ")
-    print("\nSometimes your subnet may be a /24 or /16. To scan a subnet you might want to input something like 192.168.2.0/24 to see all the machines there! :)\n\n")
+    print(Fore.BLUE + "- - - - - - - - - - - - - - - - - - - - - -\n"+ Style.RESET_ALL)
+    print(Fore.YELLOW + "What's a target?\n\n"+ Style.RESET_ALL)
+    print("""
+   Your target is the machine or network you are performing active recon on. This is where
+   where you are actively engaging the target machine or network to gather more information.\n\n""")
+    print(Fore.BLUE + "- - - - - - - - - - - - - - - - - - - - - -\n" + Style.RESET_ALL)
+    print(Fore.YELLOW + "What is a Subnet?\n\n" + Style.RESET_ALL)
+    print("""
+    A Subnet is a smaller network in which all the devices on THAT network share IP addresses 
+    with the same prefix. Like 192.168.2.0, 192.168.3.0, 192.168.4.0 are on the same subnet.
+    Sometimes your subnet may be a /24 or /16. To scan a subnet you might want to input something
+    like 192.168.2.0/24 to see all the machines there! :)\n\n""")
     choice = '0'
     while choice == '0':
         print ("1: Sounds good. Take me back!")
