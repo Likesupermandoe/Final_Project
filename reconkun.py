@@ -295,10 +295,20 @@ def target_info(): #Target Information & How to find it!
             print ("I don't understand your choice.")
 
 def nmap_expl(): #Explanation on Nmap!
-    print("- - - - - - - - - - - - - - - - - - - - - -\n")
-    print("What is Nmap? \n\n")
-    print("Nmap is an open source port scanning tool. It can be used to find different machines on a network,\nopen ports on a machine and the services they run, the operating system they're running on.")
-    print("\nHowever, it doesn't have to be just that. You can customize your Nmap scan to do different things. It can scan for vulnerabilities as well.")
-    print("\nA basic scan on a machine looking for all ports would look something like this: nmap -p- 192.168.2.0 \nThe '-p-' means to scan for all open ports on the machines 192.168.2.0 ")
+    print(Fore.BLUE + "- - - - - - - - - - - - - - - - - - - - - -\n" + Style.RESET_ALL)
+    print(Fore.YELLOW + "What is Nmap? \n\n"+ Style.RESET_ALL)
+    print("""
+    Nmap is an open source port scanning tool. It can be used to find different machines on a network,
+    open ports on a machine and the services they run, the operating system they're running on.
+    However, it doesn't have to be just that. You can customize your Nmap scan to do
+    different things. It can scan for vulnerabilities as well.\n""")
+
+    print("""
+    A basic scan on a machine looking for all ports would look something like this:""")
+    print(Fore.RED + """
+    nmap -p- 192.168.2.0""" + Style.RESET_ALL)
+    print("""
+    The '-p-' means to scan for all open ports on the machines 192.168.2.0""")
+
     nmap_menu()
 main()
