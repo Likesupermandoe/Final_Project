@@ -269,8 +269,8 @@ def target_info(): #Target Information & How to find it!
     print(Fore.BLUE + "- - - - - - - - - - - - - - - - - - - - - -\n"+ Style.RESET_ALL)
     print(Fore.YELLOW + "What's a target?\n\n"+ Style.RESET_ALL)
     print("""
-   Your target is the machine or network you are performing active recon on. This is where
-   where you are actively engaging the target machine or network to gather more information.\n\n""")
+    Your target is the machine or network you are performing active recon on. This is where
+    where you are actively engaging the target machine or network to gather more information.\n\n""")
     print(Fore.BLUE + "- - - - - - - - - - - - - - - - - - - - - -\n" + Style.RESET_ALL)
     print(Fore.YELLOW + "What is a Subnet?\n\n" + Style.RESET_ALL)
     print("""
