@@ -9,24 +9,29 @@ import sys
 def main():
   print(Fore.YELLOW + r"""
 
-       ,------.                                    ,--.                    
-       |  .--. ' ,---.  ,---. ,---. ,--,--, ,-----.|  |,-.,--.,--.,--,--,  
-       |  '--'.'| .-. :| .--'| .-. ||      \'-----'|     /|  ||  ||      \ 
-       |  |\  \ \   --.\ `--.' '-' '|  ||  |       |  \  \'  ''  '|  ||  | 
-       `--' '--' `----' `---' `---' `--''--'       `--'`--'`----' `--''--' 
+          ,------.                                    ,--.                    
+          |  .--. ' ,---.  ,---. ,---. ,--,--, ,-----.|  |,-.,--.,--.,--,--,  
+          |  '--'.'| .-. :| .--'| .-. ||      \'-----'|     /|  ||  ||      \ 
+          |  |\  \ \   --.\ `--.' '-' '|  ||  |       |  \  \'  ''  '|  ||  | 
+          `--' '--' `----' `---' `---' `--''--'       `--'`--'`----' `--''--' 
 
-                                    ._ o o
-                                    \_`-)|_
-                                 ,""       \ 
-                               ,"  ## |   • •. 
-                             ," ##   ,-\__    `.
-                           ,"       /     `--._;)
-                         ,"     ## /
-                       ,"   ##    /
+                                         ._ o o
+                                         \_`-)|_
+                                      ,""       \ 
+                                    ,"  ## |   • •. 
+                                  ," ##   ,-\__    `.
+                                ,"       /     `--._;)
+                              ,"     ## /
+                            ,"   ##    /
 
                 """)
   print(Style.RESET_ALL)
-  print(Fore.GREEN + "##### Reconkun is an interactive script that aims to guide beginner red-teamers through the active recon process by explaining \n##### the thought process as well useful tools to use to start gathering information. This is for ethical hackers who \n##### want to learn. Ethical hacking is performed by a company to help identify potential threats on a machine or network.\n\n ")
+  print(Fore.GREEN + """
+        Reconkun is an interactive script that aims to guide beginner red-teamers
+        through the active recon process by explaining the thought process as well
+        useful tools to start gathering information. This is for ethical hackers who
+        want to learn. Ethical hacking is performed by a company to help identify
+        potential threats on a machine or network.\n\n""")
 
   choice ='0'
   while choice =='0':
@@ -34,7 +39,7 @@ def main():
     print(Style.RESET_ALL)
     print("1 - I have a target IP - take me to the Scan Menu")
     print("2 - Subnet")
-    print("3 - My target?! Subnet!?  What's that?")
+    print(Fore.YELLOW + "3 - My target?! Subnet!?  What's that?"+ Style.RESET_ALL)
     print("4 - Exit")
 
     choice = input ("Please make a choice (Use numbers): ")
