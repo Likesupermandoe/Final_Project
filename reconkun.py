@@ -259,7 +259,7 @@ def nmap_menu(): #NMAP_menu
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
-        print("Back"
+        print("Back")
         scan_menu()
     elif choice == "6":
         print(" Exiting")
