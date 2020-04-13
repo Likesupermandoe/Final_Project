@@ -5,7 +5,6 @@ import subprocess #interacting with OS
 from colorama import Fore, Back, Style 
 import sys
 
-
 def main():
   print(Fore.YELLOW + r"""
 
@@ -79,11 +78,13 @@ def scan_menu(): #scan_MENU
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
   choice ='0'
   while choice =='0':
-    print(" :: What scans do you want to do? ::")
+    print(Fore.BLUE + " :: What scans do you want to do? ::" + Style.RESET_ALL)
     print("1: NMAP") # need to input IP here
     print("2: Nikto")
-    print("3: Main Menu")
-    print("4: Exit")
+    print(Fore.YELLOW + "3: What is Nmap?" + Style.RESET_ALL)
+    print(Fore. YELLOW + "4: What is Nikto?" + Style.RESET_ALL)
+    print("5: Main Menu") 
+    print("6: Exit")
 
     choice = input ("Please make a choice: ")
     #usrchoice = raw_input(" ")
@@ -92,18 +93,16 @@ def scan_menu(): #scan_MENU
         print("NMAP scan choices") #input ip here
         nmap_menu()
     elif choice == "2":
-      host = input()
-      ipv4_address = re.compile('^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
-      usr_input = ipv4_address.match(host)
-      if usr_input:
-          subprocess.call(['nikto', '-h'], [host])
-      else:
-          print("IP no bueno")
+      subprocess.call(['nikto', '-h'], [input()])
       scan_menu()
-    elif choice == "3":
+    elif choice == "5":
       print("Going back to Main Menu")
       main()
+    elif choice == "3":
+      nmap_expl()
     elif choice == "4":
+      nikto_expl()
+    elif choice == "6":
       print("Exiting program. Byebye!")
       sys.exit(1) #exit program     
     else:
@@ -113,16 +112,14 @@ def nmap_menu(): #NMAP_menu
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
   choice ='0'
   while choice =='0':
-    print("1: nmap -sV (Service Version Detection)")
-    print("2: nmap -O (Operating System Discovery)")
-    print("3: nmap -A (Aggressive Scan)")
-    print("4: What is NMAP and why should I love it?")
+    print("1: nmap -sV")
+    print("2: nmap -O")
+    print("3: nmap -A")
+    print("4: Scan Menu")
     print("5: Exit")
 
     choice = input ("Please make a choice: ")
-    if choice == "4":
-        nmap_expl() #Takes to NMAP explanation menu
-    elif choice == "3":
+    if choice == "3":
         print("Aggressive Scan") #Explaination
         print(Fore.BLUE + '''\t\t The syntax on the command line is: nmap -A <target>. 
                  This special scan enables OS detection, Service Version detection, and 
@@ -134,49 +131,45 @@ def nmap_menu(): #NMAP_menu
         print(Fore.RED + "Enter Target IP")
         print(Style.RESET_ALL)
         nm = nmap.PortScanner()
-        host = input()
-        ipv4_address = re.compile('^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
-        usr_input = ipv4_address.match(host)
-        if usr_input:        
-          nm.scan(host, '1-1024', '-A')
-          nm.command_line()
-          nm.scaninfo()
+        host = input() 
+        nm.scan(host, '1-1024', '-A')
+        nm.command_line()
+        nm.scaninfo()
 
-          for host in nm.all_hosts():
-              print('----------------------------------------------------')
-              print('Host : %s (%s)' % (host, nm[host].hostname()))
-              print('State : %s' % nm[host].state())
-              print('----------------------------------------------------')
-          for proto in nm[host].all_protocols():
-              print('----------')
-              print('Protocol : %s' % proto)
+        for host in nm.all_hosts():
+            print('----------------------------------------------------')
+            print('Host : %s (%s)' % (host, nm[host].hostname()))
+            print('State : %s' % nm[host].state())
+            print('----------------------------------------------------')
+        for proto in nm[host].all_protocols():
+            print('----------')
+            print('Protocol : %s' % proto)
 
-          lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
+        lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
 #            lport.sort()
-          for port in lport:
-              print('----------------------------------------------------')
-              print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
-              print('port : %s\tService : %s' % (port, nm[host][proto][port]['name']))
-              print('port : %s\tVersion : %s' % (port, nm[host][proto][port]['version']))
-              print('port : %s\tProduct : %s' % (port, nm[host][proto][port]['product']))
-              print('----------------------------------------------------') 
+        for port in lport:
+            print('----------------------------------------------------')
+            print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
+            print('port : %s\tService : %s' % (port, nm[host][proto][port]['name']))
+            print('port : %s\tVersion : %s' % (port, nm[host][proto][port]['version']))
+            print('port : %s\tProduct : %s' % (port, nm[host][proto][port]['product']))
+            print('----------------------------------------------------') 
 
-          if 'osmatch' in nm[host]:
-              for osmatch in nm[host]['osmatch']:
-                  print('OsMatch.name : {0}'.format(osmatch['name']))
-                  print('OsMatch.accuracy : {0}'.format(osmatch['accuracy']))
-                  print('OsMatch.line : {0}'.format(osmatch['line']))
-                  print('')
-          if 'osclass' in osmatch:
-              for osclass in osmatch['osclass']:
-                  print('OsClass.type : {0}'.format(osclass['type']))
-                  print('OsClass.vendor : {0}'.format(osclass['vendor']))
-                  print('OsClass.osfamily : {0}'.format(osclass['osfamily']))
-                  print('OsClass.osgen : {0}'.format(osclass['osgen']))
-                  print('OsClass.accuracy : {0}'.format(osclass['accuracy']))
-                  print('')
-        else:
-           print("IP no bueno")
+        if 'osmatch' in nm[host]:
+            for osmatch in nm[host]['osmatch']:
+                print('OsMatch.name : {0}'.format(osmatch['name']))
+                print('OsMatch.accuracy : {0}'.format(osmatch['accuracy']))
+                print('OsMatch.line : {0}'.format(osmatch['line']))
+                print('')
+        if 'osclass' in osmatch:
+            for osclass in osmatch['osclass']:
+                print('OsClass.type : {0}'.format(osclass['type']))
+                print('OsClass.vendor : {0}'.format(osclass['vendor']))
+                print('OsClass.osfamily : {0}'.format(osclass['osfamily']))
+                print('OsClass.osgen : {0}'.format(osclass['osgen']))
+                print('OsClass.accuracy : {0}'.format(osclass['accuracy']))
+                print('')
+
         #subprocess.call(['nmap', '-A', input(), '-oX', 'NMAP_A_Scan.txt'])        
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-A'] + [input()])
@@ -229,41 +222,36 @@ def nmap_menu(): #NMAP_menu
         print(Style.RESET_ALL)
         nm = nmap.PortScanner()
         host = input()
-        ipv4_address = re.compile('^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
-        usr_input = ipv4_address.match(host)
-        if usr_input:        
-          nm.scan(host, '1-1024', '-sV')
-          nm.command_line()
-          nm.scaninfo()
+        nm.scan(host, '1-1024', '-sV')
+        nm.command_line()
+        nm.scaninfo()
 
-          for host in nm.all_hosts():
-              print('----------------------------------------------------')
-              print('Host : %s (%s)' % (host, nm[host].hostname()))
-              print('State : %s' % nm[host].state())
-              print('----------------------------------------------------')
-          for proto in nm[host].all_protocols():
-              print('----------')
-              print('Protocol : %s' % proto)
-              
-              lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
+        for host in nm.all_hosts():
+            print('----------------------------------------------------')
+            print('Host : %s (%s)' % (host, nm[host].hostname()))
+            print('State : %s' % nm[host].state())
+            print('----------------------------------------------------')
+        for proto in nm[host].all_protocols():
+            print('----------')
+            print('Protocol : %s' % proto)
+
+            lport = nm[host]['tcp'].keys()   #<------ This 'proto' was changed from the [proto] to the ['tcp'].
 #            lport.sort()
-          for port in lport:
-              print('----------------------------------------------------')
-              print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
-              print('port : %s\tService : %s' % (port, nm[host][proto][port]['name']))
-              print('port : %s\tVersion : %s' % (port, nm[host][proto][port]['version']))
-              print('port : %s\tProduct : %s' % (port, nm[host][proto][port]['product']))
-        else:
-           print("IP no bueno")
+        for port in lport:
+            print('----------------------------------------------------')
+            print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
+            print('port : %s\tService : %s' % (port, nm[host][proto][port]['name']))
+            print('port : %s\tVersion : %s' % (port, nm[host][proto][port]['version']))
+            print('port : %s\tProduct : %s' % (port, nm[host][proto][port]['product']))
+
 #        subprocess.call(['nmap', '-sV', input(), '-oX', 'NMAP_sV_Scan.txt'])  
         scan_menu() # takes us back to scan menu
         #subprocess.call(['nmap', '-sV'] + [input()])
     elif choice == "5":
-        print("Back")
-        scan_menu()
-    elif choice == "6":
         print(" Exiting")
-        sys.exit(1) #exit program 
+        sys.exit(1) #exit program
+    elif choice == "4":
+        scan_menu() 
     else:
         print("I don't understand your choice.")
 
@@ -277,7 +265,7 @@ def target_info(): #Target Information & How to find it!
     print(Fore.BLUE + "- - - - - - - - - - - - - - - - - - - - - -\n" + Style.RESET_ALL)
     print(Fore.YELLOW + "What is a Subnet?\n\n" + Style.RESET_ALL)
     print("""
-    A Subnet is a smaller network in which all the devices on THAT network share IP addresses 
+    A Subnet is a smaller network in which all the devices on THAT network share IP addresses
     with the same prefix. Like 192.168.2.0, 192.168.3.0, 192.168.4.0 are on the same subnet.
     Sometimes your subnet may be a /24 or /16. To scan a subnet you might want to input something
     like 192.168.2.0/24 to see all the machines there! :)\n\n""")
@@ -312,6 +300,8 @@ def nmap_expl(): #Explanation on Nmap!
     nmap -p- 192.168.2.0""" + Style.RESET_ALL)
     print("""
     The '-p-' means to scan for all open ports on the machines 192.168.2.0""")
-
     nmap_menu()
+
+def nikto_expl():
+    print(Fore.BLUE + "Coming soon!\n" + Style.RESET_ALL)
 main()
