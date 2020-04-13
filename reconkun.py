@@ -95,9 +95,9 @@ def scan_menu(): #scan_MENU
       host = input()
       ipv4_address = re.compile('^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
       usr_input = ipv4_address.match(host)
-        if usr_input:
+      if usr_input:
           subprocess.call(['nikto', '-h'], [host])
-        else:
+      else:
           print("IP no bueno")
       scan_menu()
     elif choice == "3":
@@ -113,9 +113,9 @@ def nmap_menu(): #NMAP_menu
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
   choice ='0'
   while choice =='0':
-    print("1: nmap -sV")
-    print("2: nmap -O")
-    print("3: nmap -A")
+    print("1: nmap -sV (Service Version Detection)")
+    print("2: nmap -O (Operating System Discovery)")
+    print("3: nmap -A (Aggressive Scan)")
     print("4: What is NMAP and why should I love it?")
     print("5: Exit")
 
