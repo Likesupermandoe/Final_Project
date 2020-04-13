@@ -94,6 +94,11 @@ def scan_menu(): #scan_MENU
         nmap_menu()
     elif choice == "2":
       subprocess.call(['nikto', '-h', input()])
+      print(''' Keep an eye out for: 
+                    -Web Server Name
+                    -Web Server Version
+                    -Default Passwords
+                    -Vulnerable apps on Server'''
       scan_menu()
     elif choice == "5":
       print("Going back to Main Menu")
