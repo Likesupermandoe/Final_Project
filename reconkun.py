@@ -112,9 +112,9 @@ def nmap_menu(): #NMAP_menu
   print("- - - - - - - - - - - - - - - - - - - - - -\n")
   choice ='0'
   while choice =='0':
-    print("1: nmap -sV")
-    print("2: nmap -O")
-    print("3: nmap -A")
+    print("1: nmap -sV (Version Detection Scan)")
+    print("2: nmap -O (Operating System Discovery)")
+    print("3: nmap -A (Aggressive Scan)")
     print("4: Scan Menu")
     print("5: Exit")
 
