@@ -93,12 +93,13 @@ def scan_menu(): #scan_MENU
         print("NMAP scan choices") #input ip here
         nmap_menu()
     elif choice == "2":
-      subprocess.call(['nikto', '-h', input()])
       print(''' Keep an eye out for: 
                     -Web Server Name
                     -Web Server Version
                     -Default Passwords
-                    -Vulnerable apps on Server'''
+                    -Vulnerable apps on Server''')
+      print("Enter Target IP")
+      subprocess.call(['nikto', '-h', input()])
       scan_menu()
     elif choice == "5":
       print("Going back to Main Menu")
