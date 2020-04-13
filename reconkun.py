@@ -93,7 +93,7 @@ def scan_menu(): #scan_MENU
         print("NMAP scan choices") #input ip here
         nmap_menu()
     elif choice == "2":
-      subprocess.call(['nikto', '-h'], [input()])
+      subprocess.call(['nikto', '-h', input()])
       scan_menu()
     elif choice == "5":
       print("Going back to Main Menu")
